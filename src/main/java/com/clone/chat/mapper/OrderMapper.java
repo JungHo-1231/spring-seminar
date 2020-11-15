@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface OrderMapper {
     void insertOrder(OrderDto orderDto) throws Exception;
-    Integer getCustomerMoney(int customerId) throws Exception;
+    int getCustomerMoney(int customerId) throws Exception;
+    int getProductPrice(OrderDto orderDto) throws Exception;
+    int getProductQuantity(OrderDto orderDto) throws Exception;
 
 }

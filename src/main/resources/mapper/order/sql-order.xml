@@ -4,11 +4,11 @@
 <mapper namespace="com.clone.chat.mapper.OrderMapper">
     <select id="insertOrder" parameterType="com.clone.chat.dto.OrderDto">
         <![CDATA[
-			INSERT INTO  order
+			INSERT INTO `order`
 			(
 				customer_id,
 			    product_name,
-			    order_quantity
+                order_quantity
 			)
 			VALUES
 			(
@@ -27,6 +27,35 @@
 				customer
 			WHERE
 			    id=#{customerId}
+
+		]]>
+    </select>
+
+    <select id="getProductPrice" resultType="int" parameterType="com.clone.chat.dto.OrderDto">
+        <![CDATA[
+			SELECT
+				price
+			FROM
+			    product
+
+			WHERE
+			    name=#{productName}
+
+
+		]]>
+    </select>
+
+
+
+    <select id="getProductQuantity" resultType="int" parameterType="com.clone.chat.dto.OrderDto">
+        <![CDATA[
+			SELECT
+			    quantity
+			FROM
+			    product
+			WHERE
+			    name=#{productName}
+
 
 		]]>
     </select>
