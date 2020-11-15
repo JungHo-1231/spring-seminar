@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.clone.chat.mapper.OrderMapper">
+    <select id="insertOrder" parameterType="com.clone.chat.dto.OrderDto">
+        <![CDATA[
+			INSERT INTO  order
+			(
+				customer_id,
+			    product_name,
+			    order_quantity
+			)
+			VALUES
+			(
+			    #{customerId},
+			    #{productName},
+			    #{orderQuantity}
+			)
+		]]>
+    </select>
+
+    <select id="getCustomerMoney" resultType="int" parameterType="int">
+        <![CDATA[
+			SELECT
+				money
+			FROM
+				customer
+			WHERE
+			    id=#{customerId}
+
+		]]>
+    </select>
+</mapper>

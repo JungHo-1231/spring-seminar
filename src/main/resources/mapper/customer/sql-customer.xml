@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.clone.chat.mapper.CustomerMapper">
+    <select id="getAllUser" resultType="com.clone.chat.dto.CustomerDto">
+        <![CDATA[
+			SELECT
+				*
+			FROM
+				customer
+
+		]]>
+    </select>
+
+    <select id="insertCustomer" parameterType="com.clone.chat.dto.CustomerDto">
+        <![CDATA[
+			INSERT INTO  customer
+			(
+				email,
+				name
+			)
+			VALUES
+			(
+			    #{email},
+			    #{name}
+			)
+		]]>
+    </select>
+</mapper>

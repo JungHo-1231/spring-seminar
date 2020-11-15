@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.clone.chat.mapper.ProductMapper">
+    <select id="getAllProduct" resultType="com.clone.chat.dto.ProductDto">
+        <![CDATA[
+			SELECT
+				*
+			FROM
+				product
+
+		]]>
+    </select>
+
+    <select id="insertProduct" parameterType="com.clone.chat.dto.ProductDto">
+        <![CDATA[
+			INSERT INTO  product
+			(
+				name,
+				price,
+				quantity
+			)
+			VALUES
+			(
+			   #{name},
+			   #{price},
+			   #{quantity}
+			)
+		]]>
+    </select>
+</mapper>
