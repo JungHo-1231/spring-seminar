@@ -1,6 +1,7 @@
 package com.clone.chat.service;
 
 import com.clone.chat.dto.OrderDto;
+import com.clone.chat.dto.OrderResultDto;
 import com.clone.chat.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,9 +47,28 @@ public class OrderServiceImpl implements OrderService {
             return;
         }
 
+        // 상품 주문 완료
         orderMapper.insertOrder(orderDto);
 
+        // 상품 주문 완료와 동시에 주문 회원 돈 차감
+        // 기존 상품 수량이 차감되어야 한다.
 
 
+        // 회원이 가지고 있던 금액 - 상품 주문 금액
+        // 회원 테이블에 남은 업데이트
+        int updateCustomerMoney = customerMoney - productPrice;
+        System.out.println("회원 남은 돈 " + updateCustomerMoney);
+
+        // 상품 수량에서 고객이 주문한 상품 수량 차감
+        int updateProductQuantity = productQuantity - orderQuantity;
+
+        OrderResultDto  orderResultDto = new OrderResultDto(orderDto.getCustomerId(),
+                    orderDto.getProductName(), updateCustomerMoney, updateProductQuantity
+                );
+
+        orderMapper.subtractCustomerMoney(orderResultDto);
+        orderMapper.subtractProductQuantity(orderResultDto);
+
+        System.out.println("주문이 성공적으로 완료되었습니다.");
     }
 }

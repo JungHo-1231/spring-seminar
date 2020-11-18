@@ -59,4 +59,29 @@
 
 		]]>
     </select>
+    
+    
+    <update id="subtractCustomerMoney" parameterType="com.clone.chat.dto.OrderResultDto">
+         <![CDATA[
+		    UPDATE
+		        customer
+		    SET
+		        money=#{updateCustomerMoney}
+		    WHERE
+		        id=#{customerId}
+
+		]]>
+    </update>
+
+    <update id="subtractProductQuantity" parameterType="com.clone.chat.dto.OrderResultDto">
+         <![CDATA[
+		    UPDATE
+		        product
+		    SET
+		        quantity=#{updateProductQuantity}
+		    WHERE
+		        `name`=#{productName}
+
+		]]>
+    </update>
 </mapper>
